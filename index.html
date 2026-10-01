@@ -61,9 +61,20 @@ header.top{padding-block:36px 26px;display:grid;gap:16px;border-bottom:1px solid
 .postmark{display:inline-flex;align-items:center;gap:10px;font:600 12px/1 var(--mono);color:var(--red);border:1.5px solid var(--red);border-radius:999px;padding:7px 12px;width:max-content;letter-spacing:.04em}
 .meta{display:flex;flex-wrap:wrap;gap:6px 18px;color:var(--ink-2);font-size:15px}
 .meta b{color:var(--ink)}
-nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(6px);border-bottom:1px solid var(--rule);margin-inline:-20px;padding:10px 20px;display:flex;gap:6px;overflow-x:auto;scrollbar-width:thin}
-nav.toc a{flex:none;text-decoration:none;color:var(--ink-2);font:600 14px/1 var(--body);padding:8px 12px;border-radius:999px;border:1px solid var(--rule)}
-nav.toc a:hover,nav.toc a:focus-visible{background:var(--surface);color:var(--ink);outline:none;border-color:var(--rule-2)}
+nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--paper) 94%,transparent);backdrop-filter:blur(6px);border-bottom:1px solid var(--rule);margin-inline:-20px;padding:12px 20px 10px;display:grid;gap:10px}
+.chan-tabs{display:flex;gap:8px;flex-wrap:wrap}
+.chan-tabs button{font:700 15px/1 var(--body);padding:11px 16px;border-radius:10px;border:1px solid var(--rule-2);background:var(--surface);color:var(--ink-2);cursor:pointer;display:inline-flex;align-items:center;gap:9px}
+.chan-tabs button i{width:10px;height:10px;border-radius:50%;flex:none}
+.chan-tabs button small{font:600 12px/1 var(--body);color:inherit;opacity:.7}
+.chan-tabs button[aria-selected="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.chan-tabs button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.subnav{display:flex;gap:6px;overflow-x:auto;scrollbar-width:thin}
+.channel-banner{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;padding-top:34px}
+.channel-banner .tag{font:700 12px/1 var(--body);letter-spacing:.12em;text-transform:uppercase;padding:6px 10px;border-radius:999px;color:#fff}
+.channel-banner p{color:var(--ink-2);font-size:15px}
+[id]{scroll-margin-top:130px}
+nav.toc .subnav a{flex:none;text-decoration:none;color:var(--ink-2);font:600 14px/1 var(--body);padding:8px 12px;border-radius:999px;border:1px solid var(--rule)}
+nav.toc .subnav a:hover,nav.toc .subnav a:focus-visible{background:var(--surface);color:var(--ink);outline:none;border-color:var(--rule-2)}
 section{padding-block:48px 8px;display:grid;gap:22px;scroll-margin-top:60px}
 .lede{font-size:18px;color:var(--ink-2);max-width:72ch}
 .panel{background:var(--surface);border:1px solid var(--rule);border-radius:var(--radius);padding:22px}
@@ -201,20 +212,26 @@ html{scroll-behavior:smooth}
 <header class="top">
   <span class="postmark">CONSTANT CONTACT · 24-SEP-2026 &nbsp;·&nbsp; VOZZI · 30-SEP-2026</span>
   <h1>Auditoría de email y SMS — Juventus Academy y propiedades</h1>
-  <p class="lede">Las 482 campañas de email (Constant Contact) y las 469 de SMS (Vozzi), leídas una por una: qué se envió, a quién, qué funcionó y en qué estado está cada base de datos. Incluye la comparación entre los dos canales y, al final, la propuesta de funnel según la skill de email marketing del proyecto.</p>
+  <p class="lede">Dos canales auditados por separado, campaña por campaña: qué se envió, a quién, qué funcionó y en qué estado está cada base de datos. Elige el canal en las pestañas de abajo; la tercera los compara.</p>
   <div class="meta">
-    <span><b>482</b> campañas de email</span><span><b>469</b> campañas de SMS</span>
-    <span><b id="m-period"></b></span>
-    <span><b>1.716.994</b> envíos</span>
-    <span><b>43.596</b> contactos de email · <b>36.826</b> de SMS</span>
-    <span><b>12</b> dominios remitentes</span>
+    <span><b>Email · Constant Contact</b> · 482 campañas · 1.716.994 envíos · 43.596 contactos · <span id="m-period"></span></span>
+    <span><b>SMS · Vozzi</b> · 469 campañas · 408.891 mensajes · 36.826 contactos · nov 2022 → sep 2026</span>
   </div>
 </header>
 
 <nav class="toc" aria-label="Secciones">
-  <a href="#resumen">Resumen</a><a href="#plan">Plan paso a paso</a><a href="#tendencia">Tendencia</a><a href="#funciona">Qué funciona</a><a href="#contenido">Contenido</a><a href="#funnel">Funnel</a><a href="#base">Calidad de la base</a><a href="#entregabilidad">Entregabilidad</a><a href="#sms">SMS (Vozzi)</a><a href="#canales">Email vs SMS</a><a href="#propuesta">Propuesta</a><a href="#campanas">Todas las campañas</a>
+  <div class="chan-tabs" role="tablist" aria-label="Canal">
+    <button role="tab" id="tab-email" data-c="email" aria-controls="canal-email"><i style="background:var(--blue)"></i>Email <small>Constant Contact</small></button>
+    <button role="tab" id="tab-sms" data-c="sms" aria-controls="canal-sms"><i style="background:var(--red)"></i>SMS <small>Vozzi</small></button>
+    <button role="tab" id="tab-cmp" data-c="cmp" aria-controls="canal-comparacion"><i style="background:linear-gradient(90deg,var(--blue) 50%,var(--red) 50%)"></i>Email vs SMS</button>
+  </div>
+  <div class="subnav" data-for="email"><a href="#resumen">Resumen</a><a href="#plan">Plan paso a paso</a><a href="#tendencia">Tendencia</a><a href="#funciona">Qué funciona</a><a href="#contenido">Contenido</a><a href="#funnel">Funnel</a><a href="#base">Calidad de la base</a><a href="#entregabilidad">Entregabilidad</a><a href="#propuesta">Secuencias</a><a href="#campanas">Todas las campañas</a></div>
+  <div class="subnav" data-for="sms" hidden><a href="#sms">Resumen SMS</a><a href="#sms-funciona">Qué funciona</a><a href="#sms-mejores">Mejores y peores</a><a href="#sms-base">Base de contactos</a><a href="#sms-acciones">Qué hacer</a></div>
+  <div class="subnav" data-for="cmp" hidden><a href="#canales">Comparación</a><a href="#cmp-negocio">Por tipo de negocio</a><a href="#cmp-roles">Qué va por cada canal</a></div>
 </nav>
 
+<div class="channel" id="canal-email" data-c="email">
+<div class="channel-banner"><span class="tag" style="background:var(--blue)">Email · Constant Contact</span><p>482 campañas con métricas, de jun-2024 a sep-2026 · datos del 24-sep-2026</p></div>
 <!-- ============ RESUMEN ============ -->
 <section id="resumen">
   <div class="eyebrow">Resumen para decidir</div>
@@ -226,7 +243,6 @@ html{scroll-behavior:smooth}
     <div class="finding"><div class="fig" style="color:var(--good)">6×<small>más clics en desarrollo del jugador</small></div><div><h3>Lo que funciona es una promesa concreta a un público concreto</h3><p>Athletum MLS NEXT, tryouts, JTE Italia y Residency logran un 1,26% de clic en envíos masivos. Los correos a listas pequeñas de familias ya inscritas pasan del 30%. La relevancia manda mucho más que el volumen.</p></div></div>
     <div class="finding"><div class="fig" style="color:var(--warn)">84%<small>de los envíos masivos piden inscribirse</small></div><div><h3>No existe el funnel: solo la etapa de venta</h3><p>De 250 envíos masivos, 210 son de inscripción o cuenta regresiva, 12 educan y 7 dan la bienvenida. No hay secuencia de bienvenida, ni de convencimiento, ni automatizaciones por comportamiento.</p></div></div>
     <div class="finding"><div class="fig" style="color:var(--crit)">2022<small>año de las listas más usadas</small></div><div><h3>La base de datos se usa sin orden y sin limpieza</h3><p>Hay 190 listas para 43.596 contactos: cada contacto está, en promedio, en 3,5 listas. Las dos listas más usadas se llaman "EXTERNA" y son de 2022. A esas mismas familias se les pidió 7 veces que patrocinaran un evento (51.418 envíos, 0 clics) y se les mandaron 8 promociones de terceros: una clínica, un bufete de abogados, una agencia de viajes y una empresa de eventos.</p></div></div>
-    <div class="finding"><div class="fig" style="color:var(--good)">~20×<small>más clics por SMS que por email</small></div><div><h3>El SMS sí mueve a la gente, pero gasta la base más rápido</h3><p>En Vozzi, el 11,5% de los que reciben un SMS con enlace hace clic, frente al 0,56% del email masivo. Con la misma oferta ("$120 OFF Juventus Camps"), el SMS logró un 21,5% y el email un 2,4%. A cambio, cada SMS provoca un 0,90% de bajas, 12 veces más que el email, y las listas antiguas de tryouts entregan solo el 79%. <a href="#canales">Ver la comparación</a>.</p></div></div>
   </div>
 </section>
 
@@ -378,72 +394,6 @@ html{scroll-behavior:smooth}
   <p class="small">El spam está bien: 133 quejas en 1,62 millones de correos entregados (0,008%), muy por debajo del umbral de alerta de Gmail, que es 0,3%. Las bajas también son bajas (0,075%). El problema no es que la gente se queje, sino que el correo no llega y no interesa.</p>
 </section>
 
-<!-- ============ SMS ============ -->
-<section id="sms">
-  <div class="eyebrow">SMS · Vozzi · nov-2022 a sep-2026</div>
-  <h2>El canal que sí genera clics, pero que gasta la base más rápido</h2>
-  <p class="lede">Vozzi no tiene API pública. Los datos se leyeron el 30-sep-2026 desde el propio panel de la cuenta, con la sesión iniciada y en modo solo lectura: 469 campañas y 408.891 mensajes. El clic se calcula solo sobre las campañas con enlace medido (<span id="sms-ntracked"></span>), porque las demás no pueden registrar clics.</p>
-  <div class="kpis" id="kpis-sms"></div>
-  <div class="grid2">
-    <div class="panel"><h3>Mensajes enviados por mes</h3><p class="cap">El pico de marzo a junio de 2026 corresponde a Juventus Camps USA.</p><div class="chart" id="ch-sms-rec"></div></div>
-    <div class="panel"><h3>Clic mensual (campañas con enlace)</h3><p class="cap">Solo meses con 500 o más SMS entregados con enlace; los demás se omiten porque una muestra tan chica da picos engañosos. La línea fina marca el 0,56% del email masivo.</p><div class="chart" id="ch-sms-ctr"></div></div>
-  </div>
-
-  <h3>Qué funciona por SMS</h3>
-  <div class="grid2">
-    <div class="panel"><h3>Por tipo de negocio</h3><p class="cap">Mismo agrupado que en el email.</p><div class="tbl" style="margin-top:12px"><table id="t-sms-groups"><thead><tr><th>Grupo</th><th class="r">Campañas</th><th class="r">Entrega</th><th class="r">Clic</th><th class="r">Bajas</th></tr></thead><tbody></tbody></table></div></div>
-    <div class="panel"><h3>Por propiedad</h3><div class="tbl scroll" style="margin-top:12px"><table id="t-sms-props"><thead><tr><th>Propiedad</th><th class="r">Campañas</th><th class="r">Mensajes</th><th class="r">Entrega</th><th class="r">Clic</th><th class="r">Bajas</th></tr></thead><tbody></tbody></table></div></div>
-  </div>
-  <div class="grid3">
-    <div class="panel"><h3>Largo del mensaje</h3><p class="cap">Un SMS de más de 160 caracteres se cobra como 2 o más. Los cortos, además, consiguen más clics.</p><div class="hbars" id="hb-sms-segs" style="margin-top:12px"></div></div>
-    <div class="panel"><h3>Con código o sin él</h3><p class="cap">Un código concreto ("IAMJUVE", "JUVELAST") le da a la persona un motivo para actuar ahora.</p><div class="hbars" id="hb-sms-code" style="margin-top:12px"></div></div>
-    <div class="panel"><h3>Texto o con imagen</h3><p class="cap">El MMS cuesta más y rinde menos: la imagen no reemplaza a un texto claro con enlace.</p><div class="hbars" id="hb-sms-fmt" style="margin-top:12px"></div></div>
-  </div>
-  <div class="grid2">
-    <div class="panel"><h3>Tamaño del envío</h3><p class="cap">Igual que en el email, las listas pequeñas y específicas responden mejor.</p><div class="hbars" id="hb-sms-size" style="margin-top:12px"></div></div>
-    <div class="panel"><h3>Para qué se usa el SMS</h3><p class="cap">Clasificación automática del texto de cada mensaje.</p><div class="hbars" id="hb-sms-stage" style="margin-top:12px"></div></div>
-  </div>
-  <h3>Los 10 SMS con más clics (1.000 entregados o más)</h3>
-  <div class="mails" id="sms-top"></div>
-  <h3>Los que más bajas provocaron</h3>
-  <p class="small">Con 1.000 entregados o más. Destacan tres SMS de Kansas City enviados el mismo día con textos casi iguales, y avisos sin enlace, como la cancelación de un tryout.</p>
-  <div class="mails" id="sms-opt"></div>
-
-  <h3>Base de contactos de Vozzi</h3>
-  <div class="kpis" id="kpis-sms-base"></div>
-  <div class="grid2">
-    <div class="panel"><h3>Públicos según las listas</h3><p class="cap">Las 285 listas agrupadas con las mismas reglas que en Constant Contact. "Membresías" suma los contactos de cada lista actual (una persona puede estar en varias). "Contactos únicos" sale de las listas que guarda cada contacto, que incluyen listas antiguas ya borradas.</p><div class="tbl" style="margin-top:12px"><table id="t-sms-aud"><thead><tr><th>Público</th><th class="r">Listas</th><th class="r">Membresías</th><th class="r" id="th-sms-uniq">Contactos únicos</th></tr></thead><tbody></tbody></table></div></div>
-    <div class="panel" style="display:grid;gap:12px;align-content:start"><h3>Qué dice esto sobre la base</h3><ul class="plain" id="sms-base-notes"></ul></div>
-  </div>
-
-  <h3>Qué hacer con el SMS</h3>
-  <div class="road" id="sms-recs"></div>
-</section>
-
-<!-- ============ CANALES ============ -->
-<section id="canales">
-  <div class="eyebrow">Email vs SMS</div>
-  <h2>Cada canal sirve para una cosa distinta</h2>
-  <p class="lede">El SMS consigue muchos más clics, pero cada envío cuesta más dinero y más bajas. El email es barato y apenas genera bajas, pero hoy casi no mueve a nadie, porque llega mal autenticado y como flyer. No hay que elegir uno: hay que darle a cada canal su papel.</p>
-  <div class="tbl"><table id="t-channels"><thead><tr><th>Indicador</th><th class="r">Email (Constant Contact)</th><th class="r">SMS (Vozzi)</th><th>Lectura</th></tr></thead><tbody></tbody></table></div>
-  <div class="grid2">
-    <div class="panel"><h3>Clic por tipo de negocio, en los dos canales</h3><p class="cap">Email: todas las campañas. SMS: campañas con enlace medido.</p><div id="ch-groups-cmp" class="hbars" style="margin-top:12px"></div></div>
-    <div class="panel"><h3>La misma oferta por los dos canales</h3><p class="cap">Campañas equivalentes enviadas por email y por SMS.</p><div class="tbl" style="margin-top:12px"><table id="t-pairs"><thead><tr><th>Oferta</th><th class="r">Clic email</th><th class="r">Clic SMS</th><th class="r">Bajas SMS</th></tr></thead><tbody></tbody></table></div></div>
-  </div>
-  <div class="panel">
-    <h3>Qué va por cada canal</h3>
-    <div class="tbl" style="margin-top:12px"><table><thead><tr><th>Momento</th><th>Canal principal</th><th>Por qué</th></tr></thead><tbody>
-      <tr><td><b>Bienvenida y educar</b> (quiénes somos, metodología, testimonios)</td><td>Email</td><td>Necesita espacio y no urge. Un SMS para "convencer" gasta bajas sin motivo.</td></tr>
-      <tr><td><b>Lanzamiento, código, último aviso</b></td><td>SMS, con un email de apoyo</td><td>El SMS consigue 15-25% de clic cuando hay un código o un plazo real. El email deja el detalle por escrito.</td></tr>
-      <tr><td><b>Logística a inscritos</b> (sede, horario, kit, cambios)</td><td>SMS o grupo de WhatsApp</td><td>Es lo que más se lee y lo que menos bajas genera, porque la persona lo espera.</td></tr>
-      <tr><td><b>Clubes y torneos</b> (director de club)</td><td>Email, y SMS solo para el cierre</td><td>Es una decisión de comité que necesita detalle. Por SMS los torneos son lo más flojo (8,9%).</td></tr>
-      <tr><td><b>Alto valor</b> (JTE, Residency)</td><td>SMS que lleva a una conversación</td><td>El enlace abre WhatsApp o una llamada, no un pago directo. JTE se comunica como un privilegio.</td></tr>
-    </tbody></table></div>
-    <p class="small" style="margin-top:10px"><b>Regla de coordinación:</b> no mandar el mismo mensaje por los dos canales el mismo día a la misma persona. Primero el email, que es barato; al día siguiente, un SMS solo a quien no hizo clic, cuando la herramienta lo permita, o solo a la lista de mayor intención.</p>
-    <p class="small"><b>Pendiente:</b> cruzar las dos bases (teléfono y nombre) para saber cuántas familias están en ambas. Los contactos de Vozzi (nombre, teléfono y, en el 49% de los casos, correo) ya están descargados en un archivo privado del proyecto. De Constant Contact, la exportación se genera bien, pero su descarga automática falla: hay que bajar el CSV desde la web de Constant Contact.</p>
-  </div>
-</section>
-
 <!-- ============ PROPUESTA ============ -->
 <section id="propuesta">
   <div class="eyebrow">Propuesta · aplicando la skill de email</div>
@@ -467,6 +417,82 @@ html{scroll-behavior:smooth}
   <div class="tbl scroll"><table id="t-all"><thead><tr>
     <th class="sort" data-s="date">Fecha</th><th class="sort" data-s="name">Campaña / asunto</th><th class="sort" data-s="prop">Propiedad</th><th class="sort r" data-s="sends">Envíos</th><th class="sort r" data-s="bounce_r">Rebote</th><th class="sort r" data-s="open_r">Apertura</th><th class="sort r" data-s="click_r">Clic</th><th class="sort r" data-s="clicks">Clics</th></tr></thead><tbody></tbody></table></div>
 </section>
+
+</div>
+
+<div class="channel" id="canal-sms" data-c="sms" hidden>
+<div class="channel-banner"><span class="tag" style="background:var(--red)">SMS · Vozzi</span><p>469 campañas, de nov-2022 a sep-2026 · datos del 30-sep-2026</p></div>
+<!-- ============ SMS ============ -->
+<section id="sms">
+  <div class="eyebrow">SMS · Vozzi · nov-2022 a sep-2026</div>
+  <h2>El canal que sí genera clics, pero que gasta la base más rápido</h2>
+  <p class="lede">Vozzi no tiene API pública. Los datos se leyeron el 30-sep-2026 desde el propio panel de la cuenta, con la sesión iniciada y en modo solo lectura: 469 campañas y 408.891 mensajes. El clic se calcula solo sobre las campañas con enlace medido (<span id="sms-ntracked"></span>), porque las demás no pueden registrar clics.</p>
+  <div class="kpis" id="kpis-sms"></div>
+  <div class="grid2">
+    <div class="panel"><h3>Mensajes enviados por mes</h3><p class="cap">El pico de marzo a junio de 2026 corresponde a Juventus Camps USA.</p><div class="chart" id="ch-sms-rec"></div></div>
+    <div class="panel"><h3>Clic mensual (campañas con enlace)</h3><p class="cap">Solo meses con 500 o más SMS entregados con enlace; los demás se omiten porque una muestra tan chica da picos engañosos. La línea fina marca el 0,56% del email masivo.</p><div class="chart" id="ch-sms-ctr"></div></div>
+  </div>
+
+  <h3 id="sms-funciona">Qué funciona por SMS</h3>
+  <div class="grid2">
+    <div class="panel"><h3>Por tipo de negocio</h3><p class="cap">Mismo agrupado que en el email.</p><div class="tbl" style="margin-top:12px"><table id="t-sms-groups"><thead><tr><th>Grupo</th><th class="r">Campañas</th><th class="r">Entrega</th><th class="r">Clic</th><th class="r">Bajas</th></tr></thead><tbody></tbody></table></div></div>
+    <div class="panel"><h3>Por propiedad</h3><div class="tbl scroll" style="margin-top:12px"><table id="t-sms-props"><thead><tr><th>Propiedad</th><th class="r">Campañas</th><th class="r">Mensajes</th><th class="r">Entrega</th><th class="r">Clic</th><th class="r">Bajas</th></tr></thead><tbody></tbody></table></div></div>
+  </div>
+  <div class="grid3">
+    <div class="panel"><h3>Largo del mensaje</h3><p class="cap">Un SMS de más de 160 caracteres se cobra como 2 o más. Los cortos, además, consiguen más clics.</p><div class="hbars" id="hb-sms-segs" style="margin-top:12px"></div></div>
+    <div class="panel"><h3>Con código o sin él</h3><p class="cap">Un código concreto ("IAMJUVE", "JUVELAST") le da a la persona un motivo para actuar ahora.</p><div class="hbars" id="hb-sms-code" style="margin-top:12px"></div></div>
+    <div class="panel"><h3>Texto o con imagen</h3><p class="cap">El MMS cuesta más y rinde menos: la imagen no reemplaza a un texto claro con enlace.</p><div class="hbars" id="hb-sms-fmt" style="margin-top:12px"></div></div>
+  </div>
+  <div class="grid2">
+    <div class="panel"><h3>Tamaño del envío</h3><p class="cap">Igual que en el email, las listas pequeñas y específicas responden mejor.</p><div class="hbars" id="hb-sms-size" style="margin-top:12px"></div></div>
+    <div class="panel"><h3>Para qué se usa el SMS</h3><p class="cap">Clasificación automática del texto de cada mensaje.</p><div class="hbars" id="hb-sms-stage" style="margin-top:12px"></div></div>
+  </div>
+  <h3 id="sms-mejores">Los 10 SMS con más clics (1.000 entregados o más)</h3>
+  <div class="mails" id="sms-top"></div>
+  <h3>Los que más bajas provocaron</h3>
+  <p class="small">Con 1.000 entregados o más. Destacan tres SMS de Kansas City enviados el mismo día con textos casi iguales, y avisos sin enlace, como la cancelación de un tryout.</p>
+  <div class="mails" id="sms-opt"></div>
+
+  <h3 id="sms-base">Base de contactos de Vozzi</h3>
+  <div class="kpis" id="kpis-sms-base"></div>
+  <div class="grid2">
+    <div class="panel"><h3>Públicos según las listas</h3><p class="cap">Las 285 listas agrupadas con las mismas reglas que en Constant Contact. "Membresías" suma los contactos de cada lista actual (una persona puede estar en varias). "Contactos únicos" sale de las listas que guarda cada contacto, que incluyen listas antiguas ya borradas.</p><div class="tbl" style="margin-top:12px"><table id="t-sms-aud"><thead><tr><th>Público</th><th class="r">Listas</th><th class="r">Membresías</th><th class="r" id="th-sms-uniq">Contactos únicos</th></tr></thead><tbody></tbody></table></div></div>
+    <div class="panel" style="display:grid;gap:12px;align-content:start"><h3>Qué dice esto sobre la base</h3><ul class="plain" id="sms-base-notes"></ul></div>
+  </div>
+
+  <h3 id="sms-acciones">Qué hacer con el SMS</h3>
+  <div class="road" id="sms-recs"></div>
+</section>
+
+</div>
+
+<div class="channel" id="canal-comparacion" data-c="cmp" hidden>
+<div class="channel-banner"><span class="tag" style="background:var(--ink)">Email vs SMS</span><p>Los dos canales, lado a lado</p></div>
+<!-- ============ CANALES ============ -->
+<section id="canales">
+  <div class="eyebrow">Email vs SMS</div>
+  <h2>Cada canal sirve para una cosa distinta</h2>
+  <p class="lede">El SMS consigue muchos más clics, pero cada envío cuesta más dinero y más bajas. El email es barato y apenas genera bajas, pero hoy casi no mueve a nadie, porque llega mal autenticado y como flyer. No hay que elegir uno: hay que darle a cada canal su papel.</p>
+  <div class="tbl"><table id="t-channels"><thead><tr><th>Indicador</th><th class="r">Email (Constant Contact)</th><th class="r">SMS (Vozzi)</th><th>Lectura</th></tr></thead><tbody></tbody></table></div>
+  <div class="grid2">
+    <div class="panel" id="cmp-negocio"><h3>Clic por tipo de negocio, en los dos canales</h3><p class="cap">Email: todas las campañas. SMS: campañas con enlace medido.</p><div id="ch-groups-cmp" class="hbars" style="margin-top:12px"></div></div>
+    <div class="panel"><h3>La misma oferta por los dos canales</h3><p class="cap">Campañas equivalentes enviadas por email y por SMS.</p><div class="tbl" style="margin-top:12px"><table id="t-pairs"><thead><tr><th>Oferta</th><th class="r">Clic email</th><th class="r">Clic SMS</th><th class="r">Bajas SMS</th></tr></thead><tbody></tbody></table></div></div>
+  </div>
+  <div class="panel">
+    <h3 id="cmp-roles">Qué va por cada canal</h3>
+    <div class="tbl" style="margin-top:12px"><table><thead><tr><th>Momento</th><th>Canal principal</th><th>Por qué</th></tr></thead><tbody>
+      <tr><td><b>Bienvenida y educar</b> (quiénes somos, metodología, testimonios)</td><td>Email</td><td>Necesita espacio y no urge. Un SMS para "convencer" gasta bajas sin motivo.</td></tr>
+      <tr><td><b>Lanzamiento, código, último aviso</b></td><td>SMS, con un email de apoyo</td><td>El SMS consigue 15-25% de clic cuando hay un código o un plazo real. El email deja el detalle por escrito.</td></tr>
+      <tr><td><b>Logística a inscritos</b> (sede, horario, kit, cambios)</td><td>SMS o grupo de WhatsApp</td><td>Es lo que más se lee y lo que menos bajas genera, porque la persona lo espera.</td></tr>
+      <tr><td><b>Clubes y torneos</b> (director de club)</td><td>Email, y SMS solo para el cierre</td><td>Es una decisión de comité que necesita detalle. Por SMS los torneos son lo más flojo (8,9%).</td></tr>
+      <tr><td><b>Alto valor</b> (JTE, Residency)</td><td>SMS que lleva a una conversación</td><td>El enlace abre WhatsApp o una llamada, no un pago directo. JTE se comunica como un privilegio.</td></tr>
+    </tbody></table></div>
+    <p class="small" style="margin-top:10px"><b>Regla de coordinación:</b> no mandar el mismo mensaje por los dos canales el mismo día a la misma persona. Primero el email, que es barato; al día siguiente, un SMS solo a quien no hizo clic, cuando la herramienta lo permita, o solo a la lista de mayor intención.</p>
+    <p class="small"><b>Pendiente:</b> cruzar las dos bases (teléfono y nombre) para saber cuántas familias están en ambas. Los contactos de Vozzi (nombre, teléfono y, en el 49% de los casos, correo) ya están descargados en un archivo privado del proyecto. De Constant Contact, la exportación se genera bien, pero su descarga automática falla: hay que bajar el CSV desde la web de Constant Contact.</p>
+  </div>
+</section>
+
+</div>
 
 <footer>
   <div><b>SMS.</b> Vozzi no tiene API pública: el 30-sep-2026 se leyeron las 469 campañas y los totales de contactos desde el panel de la cuenta, con la sesión iniciada y solo lectura. El clic por SMS se calcula sobre las campañas con enlace medido; las bajas y la entrega, sobre todas. Los segmentos se estiman en 153 caracteres por parte. Los nombres y teléfonos se guardaron en un archivo privado del proyecto y no se publican aquí.</div>
@@ -654,7 +680,7 @@ if (DATA.sms) {
   kpis($('#kpis-sms'), [
     {l:'Clic (campañas con enlace)', v:pct(ST.ctr), c:chip('good','~20× el email masivo'), r:'Email masivo: 0,56%'},
     {l:'Bajas por envío', v:pct(ST.optr,2), c:chip('warn','12× el email'), r:`${nf(ST.opt)} bajas en total`},
-    {l:'Entrega', v:pct(ST.dlv), c:chip('warn', nf(ST.und) + ' no entregados'), r:'Números viejos o inválidos'},
+    {l:'Entrega', v:pct(ST.dlv), c:chip('warn', nf(ST.und) + ' rechazados'), r:'El resto de la diferencia son destinatarios no enviados (bajas o no elegibles al enviar)'},
     {l:'Contactos "inválidos"', v:nf(CT.invalid), c:chip('info','Casi todos duplicados'), r:'6.320 son copias mal importadas de contactos que ya existen'},
     {l:'Segmentos por mensaje', v:nf(ST.segs / ST.rec, 1), c:chip('warn','Mensajes largos'), r:'Un SMS de más de 160 caracteres cuenta doble'},
     {l:'Mensajes con "Reply STOP"', v:`${S.stop_n} de ${ST.n}`, c:chip(S.stop_all ? 'good' : 'warn', S.stop_all ? 'Cumple' : 'Revisar'), r:'Opción de baja en todos'}]);
@@ -701,7 +727,7 @@ if (DATA.sms) {
       ['Mensajes enviados', nf(E.total.sends), nf(ST.rec), 'El email envía 4 veces más volumen'],
       ['Clic', `${pct(E.total.click,2)} (masivos: ${pct(E.big.click,2)})`, `<b>${pct(ST.ctr)}</b>`, 'El SMS es ~20 veces más efectivo por mensaje'],
       ['Bajas por envío', pct(E.total.unsub,3), `<b>${pct(ST.optr,2)}</b>`, 'El SMS "gasta" la base 12 veces más rápido'],
-      ['No entregados', `${pct(E.total.bounce)} (rebote)`, `${pct(1 - ST.dlv)} (no entregado)`, 'Las dos bases necesitan limpieza'],
+      ['Sin entregar', `${pct(E.total.bounce)} (rebote)`, `${pct(1 - ST.dlv)} (incluye no enviados)`, 'Las dos bases necesitan limpieza'],
       ['Autenticación / cumplimiento', '~89% sin DKIM propio', 'STOP en el 100%', 'El SMS cumple; el email no'],
       ['Costo por mensaje', 'Bajo (plan mensual)', `~${nf(ST.segs / ST.rec, 1)} segmentos por SMS`, 'Acortar los SMS baja el costo a la mitad']];
     $('#t-channels tbody').innerHTML = rowsC.map(r => `<tr><td><b>${r[0]}</b></td><td class="r">${r[1]}</td><td class="r">${r[2]}</td><td class="small">${r[3]}</td></tr>`).join('');
@@ -845,6 +871,41 @@ function renderAll(){
 $('#q').addEventListener('input', renderAll); fp.addEventListener('change', renderAll);
 document.querySelectorAll('#t-all th.sort').forEach(th => th.addEventListener('click', () => { const k = th.dataset.s; sortD = (sortK===k) ? -sortD : -1; sortK = k; renderAll(); }));
 renderAll();
+
+/* ---------- channel tabs ---------- */
+(function () {
+  const chans = [...document.querySelectorAll('.channel')], tabs = [...document.querySelectorAll('.chan-tabs button')], subs = [...document.querySelectorAll('.subnav')];
+  const TOKEN = { email: 'email', sms: 'sms', cmp: 'comparacion' };
+  function show(c) {
+    chans.forEach(el => el.hidden = el.dataset.c !== c);
+    tabs.forEach(t => t.setAttribute('aria-selected', t.dataset.c === c));
+    subs.forEach(n => n.hidden = n.dataset.for !== c);
+  }
+  function go(id) {
+    const el = document.getElementById(id); if (!el) return false;
+    const ch = el.closest('.channel'); if (ch) show(ch.dataset.c);
+    requestAnimationFrame(() => el.scrollIntoView({ block: 'start' }));
+    return true;
+  }
+  tabs.forEach(t => t.addEventListener('click', () => {
+    show(t.dataset.c);
+    const nav = document.querySelector('nav.toc'); const top = nav.getBoundingClientRect().top + window.scrollY;
+    if (window.scrollY > top) window.scrollTo({ top: top });
+    try { history.replaceState(null, '', '#' + TOKEN[t.dataset.c]); } catch (e) {}
+  }));
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[href^="#"]'); if (!a) return;
+    const id = a.getAttribute('href').slice(1);
+    if (go(id)) { e.preventDefault(); try { history.replaceState(null, '', '#' + id); } catch (err) {} }
+  });
+  function fromHash() {
+    const h = (location.hash || '').slice(1);
+    const byToken = Object.entries(TOKEN).find(([, v]) => v === h);
+    if (byToken) show(byToken[0]); else if (!(h && go(h))) show('email');
+  }
+  window.addEventListener('hashchange', fromHash);
+  fromHash();
+})();
 </script>
 
 </body>
