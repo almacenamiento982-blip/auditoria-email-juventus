@@ -224,9 +224,11 @@ html{scroll-behavior:smooth}
     <button role="tab" id="tab-email" data-c="email" aria-controls="canal-email"><i style="background:var(--blue)"></i>Email <small>Constant Contact</small></button>
     <button role="tab" id="tab-sms" data-c="sms" aria-controls="canal-sms"><i style="background:var(--red)"></i>SMS <small>Vozzi</small></button>
     <button role="tab" id="tab-cmp" data-c="cmp" aria-controls="canal-comparacion"><i style="background:linear-gradient(90deg,var(--blue) 50%,var(--red) 50%)"></i>Email vs SMS</button>
+    <button role="tab" id="tab-cruce" data-c="cruce" aria-controls="canal-cruce"><i style="background:var(--good)"></i>Cruce de bases <small>Email × SMS × Meta</small></button>
   </div>
   <div class="subnav" data-for="email"><a href="#resumen">Resumen</a><a href="#plan">Plan paso a paso</a><a href="#tendencia">Tendencia</a><a href="#funciona">Qué funciona</a><a href="#contenido">Contenido</a><a href="#funnel">Funnel</a><a href="#base">Calidad de la base</a><a href="#entregabilidad">Entregabilidad</a><a href="#propuesta">Secuencias</a><a href="#campanas">Todas las campañas</a></div>
   <div class="subnav" data-for="sms" hidden><a href="#sms">Resumen SMS</a><a href="#sms-funciona">Qué funciona</a><a href="#sms-mejores">Mejores y peores</a><a href="#sms-base">Base de contactos</a><a href="#sms-acciones">Qué hacer</a></div>
+  <div class="subnav" data-for="cruce" hidden><a href="#cruce">Resumen</a><a href="#cruce-canales">Email × SMS</a><a href="#cruce-clientes">Clientes</a><a href="#cruce-sinpago">Sin pago</a><a href="#cruce-acciones">Qué hacer</a></div>
   <div class="subnav" data-for="cmp" hidden><a href="#canales">Comparación</a><a href="#cmp-negocio">Por tipo de negocio</a><a href="#cmp-roles">Qué va por cada canal</a></div>
 </nav>
 
@@ -492,6 +494,74 @@ html{scroll-behavior:smooth}
   </div>
 </section>
 
+</div>
+
+<div class="channel" id="canal-cruce" data-c="cruce" hidden>
+<div class="channel-banner"><span class="tag" style="background:var(--good)">Cruce de bases</span><p>Constant Contact × Vozzi × clientes de Meta Ads · 01-oct-2026</p></div>
+<section id="cruce">
+  <div class="eyebrow">Tres bases, una sola lista de personas</div>
+  <h2>Los clientes ya están en las bases, pero nadie sabe que son clientes</h2>
+  <p class="lede">Se unieron los 43.597 contactos de Constant Contact, los 36.826 de Vozzi y las familias registradas en la app de Juventus Camps USA y clínicas que se subieron a Meta (3.254 que pagaron y 4.010 que no). Una persona es la misma si coincide el correo o el teléfono. Resultado: <b>52.436 personas únicas</b>. Aquí solo se muestran totales; la lista con nombres y teléfonos está en un archivo privado del proyecto.</p>
+  <div class="kpis">
+    <div class="kpi"><span class="l">En email y en SMS</span><span class="v num">18.270</span><span class="chip info">35% de las personas</span><span class="r">15.379 confirmadas por correo y teléfono a la vez</span></div>
+    <div class="kpi"><span class="l">Solo en email</span><span class="v num">24.055</span><span class="chip warn">No reciben SMS</span><span class="r">El canal que más convierte</span></div>
+    <div class="kpi"><span class="l">Solo en SMS</span><span class="v num">10.025</span><span class="chip warn">No reciben email</span><span class="r">El canal barato para educar</span></div>
+    <div class="kpi"><span class="l">Clientes que pagaron</span><span class="v num">3.203</span><span class="chip good">96% en las dos bases</span><span class="r">Pero sin etiqueta de cliente</span></div>
+    <div class="kpi"><span class="l">Registrados sin pagar</span><span class="v num">3.785</span><span class="chip good">96% contactables</span><span class="r">El público de mayor intención</span></div>
+  </div>
+  <div class="grid2">
+    <div class="panel"><h3>En qué bases está cada persona</h3>
+      <div class="tbl" style="margin-top:12px"><table><thead><tr><th>Bases</th><th class="r">Personas</th><th class="r">%</th></tr></thead><tbody>
+        <tr><td>Solo Constant Contact</td><td class="r">23.946</td><td class="r">46%</td></tr>
+        <tr><td>Constant Contact + Vozzi</td><td class="r">11.712</td><td class="r">22%</td></tr>
+        <tr><td>Solo Vozzi</td><td class="r">9.790</td><td class="r">19%</td></tr>
+        <tr><td><b>Las tres</b> (Constant Contact + Vozzi + Meta)</td><td class="r"><b>6.558</b></td><td class="r">13%</td></tr>
+        <tr><td>Vozzi + Meta</td><td class="r">235</td><td class="r">0,4%</td></tr>
+        <tr><td>Constant Contact + Meta</td><td class="r">109</td><td class="r">0,2%</td></tr>
+        <tr><td>Solo Meta <span class="small">(nunca recibieron un mensaje)</span></td><td class="r">86</td><td class="r">0,2%</td></tr>
+      </tbody></table></div>
+    </div>
+    <div class="panel" id="cruce-canales"><h3>Por qué canal se le puede escribir hoy</h3><p class="cap">Sin contar las bajas ni los números inválidos.</p>
+      <div class="hbars" style="margin-top:12px">
+        <div class="hbar"><div class="k">Email y SMS</div><div class="t"><i class="hot" style="width:61%"></i></div><div class="n">14.184</div></div>
+        <div class="hbar"><div class="k">Solo email</div><div class="t"><i style="width:100%"></i></div><div class="n">23.269</div></div>
+        <div class="hbar"><div class="k">Solo SMS</div><div class="t"><i style="width:45%"></i></div><div class="n">10.519</div></div>
+        <div class="hbar"><div class="k">Ninguno <small>bajas o inválidos en todo</small></div><div class="t"><i class="alt" style="width:19%"></i></div><div class="n">4.378</div></div>
+      </div>
+      <p class="small" style="margin-top:12px"><b>Preferencia de canal:</b> 1.465 personas se dieron de baja del email pero siguen activas en SMS, y 1.332 al revés. A cada una hay que escribirle solo por el canal que mantiene.</p>
+    </div>
+  </div>
+  <div class="grid2">
+    <div class="panel" id="cruce-clientes"><h3>Las 3.203 familias que pagaron</h3>
+      <div class="tbl" style="margin-top:12px"><table><tbody>
+        <tr><td>Están en Constant Contact</td><td class="r">3.151 (98%)</td></tr>
+        <tr><td>Están en Vozzi</td><td class="r">3.141 (98%)</td></tr>
+        <tr><td>Están en las dos</td><td class="r">3.090 (96%)</td></tr>
+        <tr><td>Alcanzables por algún canal</td><td class="r">3.096 (97%)</td></tr>
+        <tr><td>Se dieron de baja del email / del SMS</td><td class="r">282 / 286</td></tr>
+      </tbody></table></div>
+      <p class="small" style="margin-top:10px">Los clientes ya están en las bases, pero <b>sin marcar como clientes</b>, así que reciben las mismas cuentas regresivas de "Register now" que alguien que nunca compró. Más clientes en Dallas, San Diego, Bradenton, Las Vegas, Marietta, Sarasota y Alpharetta.</p>
+    </div>
+    <div class="panel" id="cruce-sinpago"><h3>Las 3.785 familias que se registraron y no pagaron</h3>
+      <div class="hbars" style="margin-top:12px">
+        <div class="hbar"><div class="k">Email y SMS</div><div class="t"><i class="hot" style="width:100%"></i></div><div class="n">2.950</div></div>
+        <div class="hbar"><div class="k">Solo email</div><div class="t"><i style="width:12%"></i></div><div class="n">359</div></div>
+        <div class="hbar"><div class="k">Solo SMS</div><div class="t"><i style="width:11%"></i></div><div class="n">332</div></div>
+        <div class="hbar"><div class="k">Sin canal</div><div class="t"><i class="alt" style="width:5%"></i></div><div class="n">144</div></div>
+      </div>
+      <p class="small" style="margin-top:10px">Empezaron la inscripción y no la terminaron: es el público de mayor intención de toda la base, y hoy no reciben un mensaje específico. Más registros sin pago en El Paso (101), Indianapolis (91) y Dallas (60).</p>
+    </div>
+  </div>
+  <p class="note"><b>Las otras 45.448 personas</b> no aparecen en la app de Camps USA ni de clínicas. No significa que no sean clientes: las listas de Meta solo cubren Camps USA y clínicas. Pre-Academy, la academia, Camps México y los torneos no están ahí.</p>
+  <h3 id="cruce-acciones">Qué hacer con el cruce</h3>
+  <div class="road">
+    <div class="phase"><div class="when">Etiquetar clientes<small>Esta semana</small></div><ul><li>Etiqueta <b>"Cliente Camps USA/Clínicas"</b> a las 3.151 familias en Constant Contact y a las 3.141 en Vozzi, y excluirlas de las cuentas regresivas de los eventos que ya compraron.</li></ul></div>
+    <div class="phase"><div class="when">Recuperar a los sin pago<small>Este mes</small></div><ul><li>Secuencia <b>"Termina tu inscripción"</b> para las 3.785 familias: SMS con enlace directo y un email de apoyo con preguntas frecuentes. La lista con el canal sugerido para cada familia ya está preparada.</li></ul></div>
+    <div class="phase"><div class="when">Respetar el canal<small>Desde ya</small></div><ul><li>No escribir por email a las 1.465 bajas de email, ni por SMS a las 1.332 bajas de SMS.</li></ul></div>
+    <div class="phase"><div class="when">Completar canales<small>Continuo</small></div><ul><li>Pedir el correo a los 10.025 que solo están en Vozzi, e importar a Constant Contact los que ya lo tienen. Importar las 86 familias que solo están en Meta.</li></ul></div>
+  </div>
+  <p class="small">Método: se unió por correo en minúsculas o teléfono normalizado (1 + 10 dígitos). Se excluyeron como enlace 145 teléfonos y 26 correos compartidos por muchas personas (clubes, la academia, correos de prueba). Quedan 29 grupos de 10 registros o más para revisar a mano. Estados de permiso al 30-sep (Vozzi) y 01-oct (Constant Contact).</p>
+</section>
 </div>
 
 <footer>
@@ -875,7 +945,7 @@ renderAll();
 /* ---------- channel tabs ---------- */
 (function () {
   const chans = [...document.querySelectorAll('.channel')], tabs = [...document.querySelectorAll('.chan-tabs button')], subs = [...document.querySelectorAll('.subnav')];
-  const TOKEN = { email: 'email', sms: 'sms', cmp: 'comparacion' };
+  const TOKEN = { email: 'email', sms: 'sms', cmp: 'comparacion', cruce: 'cruce-bases' };
   function show(c) {
     chans.forEach(el => el.hidden = el.dataset.c !== c);
     tabs.forEach(t => t.setAttribute('aria-selected', t.dataset.c === c));
