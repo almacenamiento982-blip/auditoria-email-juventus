@@ -458,7 +458,7 @@ html{scroll-behavior:smooth}
   <h3 id="sms-base">Base de contactos de Vozzi</h3>
   <div class="kpis" id="kpis-sms-base"></div>
   <div class="grid2">
-    <div class="panel"><h3>Públicos según las listas</h3><p class="cap">Las 285 listas agrupadas con las mismas reglas que en Constant Contact. "Membresías" suma los contactos de cada lista actual (una persona puede estar en varias). "Contactos únicos" sale de las listas que guarda cada contacto, que incluyen listas antiguas ya borradas.</p><div class="tbl" style="margin-top:12px"><table id="t-sms-aud"><thead><tr><th>Público</th><th class="r">Listas</th><th class="r">Membresías</th><th class="r" id="th-sms-uniq">Contactos únicos</th></tr></thead><tbody></tbody></table></div></div>
+    <div class="panel"><h3>Públicos según las listas</h3><p class="cap">Las 285 listas agrupadas con las mismas reglas que en Constant Contact. "Membresías" suma los contactos de cada lista actual (una persona puede estar en varias). "Contactos únicos" sale de las listas de cada contacto, que incluyen también a contactos dados de baja o inválidos.</p><div class="tbl" style="margin-top:12px"><table id="t-sms-aud"><thead><tr><th>Público</th><th class="r">Listas</th><th class="r">Membresías</th><th class="r" id="th-sms-uniq">Contactos únicos</th></tr></thead><tbody></tbody></table></div></div>
     <div class="panel" style="display:grid;gap:12px;align-content:start"><h3>Qué dice esto sobre la base</h3><ul class="plain" id="sms-base-notes"></ul></div>
   </div>
 
@@ -559,7 +559,7 @@ html{scroll-behavior:smooth}
     <div class="kpi"><span class="l">Fuera de Meta</span><span class="v num">45.448</span><span class="chip info">87% de las personas</span><span class="r">41.235 contactables</span></div>
     <div class="kpi"><span class="l">En un solo público</span><span class="v num">23.497</span><span class="chip good">Origen claro</span><span class="r">Se pueden etiquetar ya</span></div>
     <div class="kpi"><span class="l">En varios públicos</span><span class="v num">12.829</span><span class="chip warn">Listas volcado</span><span class="r">Hay que preguntarles qué les interesa</span></div>
-    <div class="kpi"><span class="l">Sin ninguna lista</span><span class="v num">8.711</span><span class="chip crit">No reciben campañas</span><span class="r">6.340 son contactos activos de Vozzi nunca añadidos a una lista</span></div>
+    <div class="kpi"><span class="l">Sin ninguna lista</span><span class="v num">8.711</span><span class="chip crit">No reciben campañas</span><span class="r">6.519 contactables (casi todas activas en Vozzi); el resto son bajas</span></div>
   </div>
   <div class="panel">
     <h3>Público de cada grupo</h3>
@@ -592,7 +592,7 @@ html{scroll-behavior:smooth}
       <li><b>Familias de camps en Miami</b> (9.554 solo en ese público) y <b>Residency e Italia</b> (6.488) son los grupos más grandes fuera de Meta. Las de Miami no están en las listas de Meta porque esas listas solo recogen Camps USA y clínicas, no los camps de Miami.</li>
       <li><b>Camps en otras ciudades:</b> 3.231 personas fuera de Meta solo en esas listas. Al no estar en la app de inscripciones, lo más probable es que sean leads de esas ciudades (listas "LEADS" y bases por ciudad) que nunca llegaron a registrarse: público para captar.</li>
       <li><b>Pre-Academy:</b> 7.441 personas en listas de Pre-Academy, pero solo 224 únicamente ahí: casi todas las familias de Pre-Academy también están en listas de camps.</li>
-      <li><b>Sin lista:</b> 8.711 personas no están en ninguna lista y por eso no reciben campañas. 6.340 son contactos activos de Vozzi que entraron, por ejemplo por palabra clave o conversación, y nunca se añadieron a una lista.</li>
+      <li><b>Sin lista:</b> 8.711 personas no pertenecen hoy a ninguna lista, así que no les llega ninguna campaña masiva. <b>6.519 se pueden contactar</b>: 6.340 son contactos activos de Vozzi, casi todos importados sin fecha de alta, que nunca se añadieron a una lista. Las otras ~2.190 son bajas o números inválidos, que están fuera de las listas precisamente por haberse dado de baja (Constant Contact retira de todas las listas a quien se da de baja). Que hoy no estén en una lista no prueba que nunca hayan recibido un mensaje.</li>
     </ul></div>
   </div>
 <!-- CRUCE_PUBLICOS_END -->
