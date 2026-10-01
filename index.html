@@ -228,7 +228,7 @@ html{scroll-behavior:smooth}
   </div>
   <div class="subnav" data-for="email"><a href="#resumen">Resumen</a><a href="#plan">Plan paso a paso</a><a href="#tendencia">Tendencia</a><a href="#funciona">Qué funciona</a><a href="#contenido">Contenido</a><a href="#funnel">Funnel</a><a href="#base">Calidad de la base</a><a href="#entregabilidad">Entregabilidad</a><a href="#propuesta">Secuencias</a><a href="#campanas">Todas las campañas</a></div>
   <div class="subnav" data-for="sms" hidden><a href="#sms">Resumen SMS</a><a href="#sms-funciona">Qué funciona</a><a href="#sms-mejores">Mejores y peores</a><a href="#sms-base">Base de contactos</a><a href="#sms-acciones">Qué hacer</a></div>
-  <div class="subnav" data-for="cruce" hidden><a href="#cruce">Resumen</a><a href="#cruce-canales">Email × SMS</a><a href="#cruce-clientes">Clientes</a><a href="#cruce-sinpago">Sin pago</a><a href="#cruce-acciones">Qué hacer</a></div>
+  <div class="subnav" data-for="cruce" hidden><a href="#cruce">Resumen</a><a href="#cruce-canales">Email × SMS</a><a href="#cruce-clientes">Clientes</a><a href="#cruce-sinpago">Sin pago</a><a href="#cruce-acciones">Qué hacer</a><a href="#cruce-etiquetas">Cómo se etiqueta</a></div>
   <div class="subnav" data-for="cmp" hidden><a href="#canales">Comparación</a><a href="#cmp-negocio">Por tipo de negocio</a><a href="#cmp-roles">Qué va por cada canal</a></div>
 </nav>
 
@@ -555,11 +555,42 @@ html{scroll-behavior:smooth}
   <p class="note"><b>Las otras 45.448 personas</b> no aparecen en la app de Camps USA ni de clínicas. No significa que no sean clientes: las listas de Meta solo cubren Camps USA y clínicas. Pre-Academy, la academia, Camps México y los torneos no están ahí.</p>
   <h3 id="cruce-acciones">Qué hacer con el cruce</h3>
   <div class="road">
-    <div class="phase"><div class="when">Etiquetar clientes<small>Esta semana</small></div><ul><li>Etiqueta <b>"Cliente Camps USA/Clínicas"</b> a las 3.151 familias en Constant Contact y a las 3.141 en Vozzi, y excluirlas de las cuentas regresivas de los eventos que ya compraron.</li></ul></div>
+    <div class="phase"><div class="when">Etiquetar clientes<small>Esta semana</small></div><ul><li>Etiqueta <b>"Cliente · Camps USA/Clínicas · 2024-26"</b> a las 3.151 familias en Constant Contact y a las 3.141 en Vozzi, y exclusión de las cuentas regresivas de los eventos que ya compraron. Procedimiento en <a href="#cruce-etiquetas">Cómo se etiquetan los clientes</a>.</li></ul></div>
     <div class="phase"><div class="when">Recuperar a los sin pago<small>Este mes</small></div><ul><li>Secuencia <b>"Termina tu inscripción"</b> para las 3.785 familias: SMS con enlace directo y un email de apoyo con preguntas frecuentes. La lista con el canal sugerido para cada familia ya está preparada.</li></ul></div>
     <div class="phase"><div class="when">Respetar el canal<small>Desde ya</small></div><ul><li>No escribir por email a las 1.465 bajas de email, ni por SMS a las 1.332 bajas de SMS.</li></ul></div>
     <div class="phase"><div class="when">Completar canales<small>Continuo</small></div><ul><li>Pedir el correo a los 10.025 que solo están en Vozzi, e importar a Constant Contact los que ya lo tienen. Importar las 86 familias que solo están en Meta.</li></ul></div>
   </div>
+  <h3 id="cruce-etiquetas">Cómo se etiquetan los clientes</h3>
+  <p class="lede" style="font-size:16px">Se proponen dos etiquetas, con nombre claro y temporada, para separar a quien ya compró de quien empezó la inscripción y no la terminó. El procedimiento es distinto en cada plataforma, porque Constant Contact tiene API y Vozzi no.</p>
+  <div class="tbl"><table><thead><tr><th>Etiqueta propuesta</th><th class="r">Constant Contact</th><th class="r">Vozzi</th><th>Para qué sirve</th></tr></thead><tbody>
+    <tr><td><span class="mono">Cliente · Camps USA/Clínicas · 2024-26</span></td><td class="r">3.151</td><td class="r">3.141</td><td>Excluirlas de las cuentas regresivas de eventos que ya compraron; enviarles mensajes de cliente (logística, próxima temporada).</td></tr>
+    <tr><td><span class="mono">Registro sin pago · Camps USA/Clínicas · 2024-26</span></td><td class="r">3.516</td><td class="r">3.652</td><td>Dirigirles la secuencia "Termina tu inscripción".</td></tr>
+  </tbody></table></div>
+  <div class="grid2">
+    <div class="panel"><h3>Constant Contact: por API, en bloque</h3>
+      <ol class="plain" style="margin-top:10px">
+        <li><b>Se crean las dos etiquetas</b> en la cuenta.</li>
+        <li><b>Se toma el identificador interno</b> de Constant Contact de cada familia a partir del cruce. No se reimporta ningún contacto ni se modifica ningún dato.</li>
+        <li><b>Se aplican en bloque</b> con la función de etiquetado masivo de Constant Contact (<span class="mono">contacts_taggings_add</span>), que acepta hasta 500 contactos por envío: unos 7 envíos para clientes y 8 para los sin pago.</li>
+        <li><b>Se hace primero una prueba con 5 contactos</b>, que se revisa en <i>Contacts → Tags</i> antes de aplicar el resto.</li>
+        <li><b>Se verifica al final</b> que el número de contactos de cada etiqueta coincida con el cruce (3.151 y 3.516).</li>
+      </ol>
+    </div>
+    <div class="panel"><h3>Vozzi: por importación de listas</h3>
+      <ol class="plain" style="margin-top:10px">
+        <li>Vozzi no tiene API y trabaja con <b>listas</b>, no con etiquetas. Por seguridad, no se escribe en la cuenta por vías no documentadas.</li>
+        <li><b>Se preparan dos archivos CSV</b> solo con teléfono, nombre y apellido: clientes (3.141) y sin pago (3.652).</li>
+        <li><b>Se importan en Vozzi como dos listas nuevas</b>, con los mismos nombres que las etiquetas. Son unos 5 minutos desde el panel.</li>
+        <li><b>Al enviar, esas listas se usan para dirigir o excluir.</b> Hay que confirmar si Vozzi permite excluir una lista en un envío; si no lo permite, la cuenta regresiva se envía a una lista que ya viene sin los clientes, generada a partir del cruce.</li>
+      </ol>
+    </div>
+  </div>
+  <div class="grid3">
+    <div class="panel"><h3>Qué cambia y qué no</h3><p class="cap" style="margin-top:6px">Solo se añade una etiqueta (o una lista). No se borra ni se modifica ningún contacto, y no se envía ningún mensaje. Se deshace en minutos: Constant Contact tiene la función equivalente para quitar etiquetas en bloque, o basta con borrar la etiqueta.</p></div>
+    <div class="panel"><h3>Cómo se usa después</h3><p class="cap" style="margin-top:6px">En Constant Contact, las cuentas regresivas se envían a un segmento que excluye la etiqueta "Cliente", y la secuencia "Termina tu inscripción" se dirige al segmento "Registro sin pago". En Vozzi, lo mismo con las listas.</p></div>
+    <div class="panel"><h3>Cómo se mantiene al día</h3><p class="cap" style="margin-top:6px">Las etiquetas reflejan la foto del 01-oct-2026. Después de cada evento (por ejemplo, Chicago y Dallas) se repite el cruce con la nueva exportación de la app de inscripciones y se etiqueta a los nuevos clientes; el script ya existe. A largo plazo, los formularios web (paso 12 del plan de email) deberían enviar a cada contacto ya etiquetado.</p></div>
+  </div>
+  <p class="small"><b>Requisito antes de ejecutar:</b> aprobación de los nombres de las etiquetas y del uso de los datos de inscripción para segmentar. Referencia técnica: Constant Contact, <i>Add Tags to Contacts Bulk Activity</i> y <i>Tags Overview</i> (developer.constantcontact.com).</p>
   <p class="small">Método: se unió por correo en minúsculas o teléfono normalizado (1 + 10 dígitos). Se excluyeron como enlace 145 teléfonos y 26 correos compartidos por muchas personas (clubes, la academia, correos de prueba). Quedan 29 grupos de 10 registros o más para revisar a mano. Estados de permiso al 30-sep (Vozzi) y 01-oct (Constant Contact).</p>
 </section>
 </div>
@@ -846,7 +877,7 @@ const PLAN = [
         'Elegir <i>Self-authenticate using DKIM CNAME records</i> → <i>Continue</i> → elegir <code>juventus-academy.com</code> → <i>Continue</i>.',
         'Copiar los dos registros CNAME (<code>ctct1._domainkey</code> y <code>ctct2._domainkey</code>) y enviárselos a quien administre el dominio para que los pegue en el DNS.',
         'A las 24-48 horas, volver a esa pantalla → <i>Check status</i> → <i>Activate</i>.'],
-   who:'David (Constant Contact) + quien administre el DNS', time:'15 minutos, y 24-48 h de espera', done:'Constant Contact muestra el dominio como activo. Yo también lo puedo comprobar desde aquí.'},
+   who:'David (Constant Contact) + quien administre el DNS', time:'15 minutos, y 24-48 h de espera', done:'Constant Contact muestra el dominio como activo, y una consulta DNS confirma los dos registros CNAME.'},
   {t:'La misma firma en los otros 7 dominios propios', why:'Solo juventuscampsusa.com y jresidency.com la tienen hoy.',
    how:['Repetir el paso 3, en este orden (de más a menos volumen): <code>adidaschampionscup.com</code>, <code>athletumfc.com</code>, <code>clashofthechampions.com</code>, <code>legendsmiamicup.com</code>, <code>intermiamicfcamps.com</code>, <code>jacademygroup.com</code> y <code>jacademylasvegas.com</code>.',
         '<code>intermiamicfcamps.com</code> tiene DMARC estricto (<code>p=reject</code>): sin la firma, Constant Contact tiene que reescribir el remitente.',
@@ -877,8 +908,8 @@ const PLAN = [
         'En Constant Contact, crear una etiqueta por público (<i>Contacts</i> → <i>Tags</i>) y aplicarla a los contactos de las listas de cada grupo. Una persona puede tener dos etiquetas, por ejemplo Pre-Academy y camps.',
         'Añadir la etiqueta <b>Cliente</b> a los 3.474 contactos de listas de inscritos (compras de kit, "registered", fechas de camp).',
         'De paso, confirmar que las listas <i>EXTERNA</i> e <i>INTERNO</i> también salieron de los formularios web, y renombrarlas.',
-        'Esto lo puedo hacer yo por la API cuando me lo confirmes. Poner etiquetas no borra nada, y se deshace quitándolas.'],
-   who:'David, o yo con tu confirmación', time:'Una tarde', done:'Cada contacto tiene al menos una etiqueta de público.'},
+        'Se puede hacer de forma masiva por la API (procedimiento en la pestaña <a href="#cruce-etiquetas">Cruce de bases</a>). Poner etiquetas no borra nada, y se deshace quitándolas.'],
+   who:'Marketing (David), con aprobación previa', time:'Una tarde', done:'Cada contacto tiene al menos una etiqueta de público.'},
   {t:'Correo de preferencias y reactivación', why:'7.096 contactos están en 3 o más públicos y 378 solo en listas generales: de ellos no se sabe qué les interesa. Además, seguir escribiendo a quien no abre desde hace un año daña la reputación (skill #19 y #20).',
    how:['Un correo corto: "¿Qué te gustaría recibir?", con 4 botones: <i>Pre-Academy</i>, <i>Camps</i>, <i>Tryouts y equipos competitivos</i> y <i>Soy un club</i>.',
         'Cada botón se convierte en su segmento, desde <i>Contacts</i> → <i>Segments</i> → <i>Contact activity</i> → clic en ese correo, o desde el reporte de clics por enlace. Quien elige se etiqueta.',
@@ -919,7 +950,7 @@ const PLAN = [
   {t:'Revisar los números cada mes', why:'Lo que no se mide vuelve al punto de partida.',
    how:['Metas a 90 días: rebote por debajo del 2%, clic en envíos masivos por encima del 1,5% (hoy 0,56%), quejas de spam por debajo del 0,1% y bajas por debajo del 0,3%. Al limpiar, las bajas subirán un poco, y eso es sano.',
         'Mirar clics e inscripciones, no aperturas.',
-        'Me puedes pedir que repita esta auditoría: los scripts ya están en la carpeta del proyecto.'],
+        'La auditoría se puede repetir con los scripts que ya están en la carpeta del proyecto.'],
    who:'David', time:'30 minutos al mes', done:'Hay un número de referencia cada mes para comparar.'}]}];
 const PKEY = 'plan-done-v2'; let pdone = {}; try { pdone = JSON.parse(localStorage.getItem(PKEY) || '{}') || {}; } catch(e) {}
 let pn = 0;
