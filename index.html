@@ -280,7 +280,7 @@ html{scroll-behavior:smooth}
   </div>
   <div class="subnav" data-for="email"><a href="#resumen">Resumen</a><a href="#plan">Plan paso a paso</a><a href="#tendencia">Tendencia</a><a href="#funciona">Qué funciona</a><a href="#contenido">Contenido</a><a href="#funnel">Funnel</a><a href="#base">Calidad de la base</a><a href="#entregabilidad">Entregabilidad</a><a href="#propuesta">Secuencias</a><a href="#campanas">Todas las campañas</a></div>
   <div class="subnav" data-for="sms" hidden><a href="#sms">Resumen SMS</a><a href="#sms-funciona">Qué funciona</a><a href="#sms-mejores">Mejores y peores</a><a href="#sms-base">Base de contactos</a><a href="#sms-acciones">Qué hacer</a></div>
-  <div class="subnav" data-for="plan" hidden><a href="#plan-envios">Resumen</a><a href="#plan-reglas">Reglas</a><a href="#plan-calendario">Calendario</a><a href="#plan-volumen">Volumen</a><a href="#plan-idcamps">ID Camps</a><a href="#plan-camps">Summer Camps</a><a href="#plan-jte">JTE Roma</a><a href="#plan-jlv">Las Vegas</a><a href="#plan-torneos">Torneos</a><a href="#plan-pref">Preferencias</a></div>
+  <div class="subnav" data-for="plan" hidden><a href="#plan-envios">Resumen</a><a href="#plan-arranque">Arranque</a><a href="#plan-reglas">Reglas</a><a href="#plan-calendario">Calendario</a><a href="#plan-volumen">Volumen</a><a href="#plan-idcamps">ID Camps</a><a href="#plan-camps">Summer Camps</a><a href="#plan-jte">JTE Roma</a><a href="#plan-jlv">Las Vegas</a><a href="#plan-torneos">Torneos</a><a href="#plan-pref">Preferencias</a></div>
   <div class="subnav" data-for="cruce" hidden><a href="#cruce">Resumen</a><a href="#cruce-lectura">Cómo leerlo</a><a href="#cruce-canales">Email × SMS</a><a href="#cruce-clientes">Clientes</a><a href="#cruce-sinpago">Sin pago</a><a href="#cruce-fuera">Fuera de Meta</a><a href="#cruce-acciones">Qué hacer</a><a href="#cruce-etiquetas">Cómo se etiqueta</a></div>
   <div class="subnav" data-for="cmp" hidden><a href="#canales">Comparación</a><a href="#cmp-negocio">Por tipo de negocio</a><a href="#cmp-roles">Qué va por cada canal</a></div>
 </nav>
@@ -556,6 +556,40 @@ html{scroll-behavior:smooth}
   <h2>Qué se envía, a quién, cuándo y cómo se ve</h2>
   <p class="lede">El plan ordena todos los envíos de email (Constant Contact) y SMS (Vozzi) de octubre de 2026 a junio de 2027. <b>ID Camps va primero</b>, porque es la campaña activa; Summer Camps empieza en enero; la Juventus Training Experience va con muy baja frecuencia; Las Vegas y los torneos completan el calendario. Cada público sale del cruce de bases: personas reales, por ciudad y por canal disponible. Al tocar un mensaje se ve cómo quedaría en el correo o en el teléfono.</p>
   <div class="kpis" id="plan-total"></div>
+  <h3 id="plan-arranque">Arranque: qué se necesita para empezar a enviar</h3>
+  <p class="cap">Situación al 01-oct-2026. El primer envío está previsto para el 8 de octubre. Ningún mensaje sale hasta que se cumplan sus requisitos.</p>
+  <div class="tbl" style="margin-top:12px"><table><thead><tr><th>Fecha</th><th>Envío</th><th>Estado</th><th>Requisito pendiente</th></tr></thead><tbody>
+    <tr><td>8 oct</td><td>Email JTE · invitación a Italia</td><td><span class="chip warn">Pendiente</span></td><td>Número de WhatsApp de los botones</td></tr>
+    <tr><td>10 oct</td><td>Email ID Camps Chicago · anuncio</td><td><span class="chip good">Contenido listo</span></td><td>Crear la lista de la sede en Constant Contact</td></tr>
+    <tr><td>13 oct</td><td>Email Las Vegas · leyendas</td><td><span class="chip crit">Bloqueado</span></td><td>DKIM y DMARC del dominio de Las Vegas</td></tr>
+    <tr><td>15 oct</td><td>SMS Chicago · clientes y registros sin pago</td><td><span class="chip warn">Pendiente</span></td><td>Listas cargadas en Vozzi</td></tr>
+    <tr><td>17 oct</td><td>Email ID Camps Dallas · anuncio</td><td><span class="chip good">Contenido listo</span></td><td>Crear la lista de la sede en Constant Contact</td></tr>
+    <tr><td>20 oct</td><td>Email Adidas Champions Cup y SMS Las Vegas</td><td><span class="chip crit">Bloqueado</span></td><td>DKIM del dominio de ACC; confirmar las tarifas ($895 / $1,195)</td></tr>
+  </tbody></table></div>
+  <div class="grid2" style="margin-top:16px">
+    <div class="panel"><h3>Lo que aporta el equipo de Soccer Cage</h3><ol class="plain" style="margin-top:8px">
+      <li><b>Aprobación del plan:</b> frecuencia, públicos y textos.</li>
+      <li><b>Número de WhatsApp de JTE:</b> los botones de esos emails abren una conversación, no un formulario.</li>
+      <li><b>Acceso al DNS</b> de los dominios de Las Vegas, Adidas Champions Cup y Clash, por parte de quien los administre (unos 30 minutos por dominio). ID Camps, Summer Camps y JTE ya salen autenticados desde <span class="mono">juventuscampsusa.com</span>.</li>
+      <li><b>Export de inscritos de la app de registro,</b> diario o al menos semanal. Sin ese archivo no se puede excluir a quien ya pagó, y los avisos de "últimos cupos" llegarían a familias ya inscritas. Es el requisito más importante de ID Camps.</li>
+      <li><b>Confirmación con Vozzi</b> de si el cupo de 10.000 SMS es mensual.</li>
+      <li><b>Datos entre corchetes,</b> según la fecha de cada mensaje: qué recibe cada jugador al final del camp (21-oct) y un testimonio real de un padre o una madre (28-oct). Si el testimonio no llega, el email sale con la cifra de familias y sin cita.</li>
+    </ol></div>
+    <div class="panel"><h3>Lo que se prepara desde marketing</h3><ol class="plain" style="margin-top:8px">
+      <li><b>Etiquetas</b> "Cliente" y "Registro sin pago" en Constant Contact.</li>
+      <li><b>Listas por sede</b> (por ejemplo, "IDC26 · Chicago · todos"), creadas e importadas desde el cruce de bases, sin los rebotes.</li>
+      <li><b>Borradores en Constant Contact:</b> imágenes subidas a la biblioteca y primeros emails (JTE, Chicago y Dallas) montados sin programar, para revisarlos en la plataforma antes de aprobarlos.</li>
+      <li><b>Archivos para Vozzi:</b> un CSV por lista de SMS, listo para importar. Vozzi no tiene API, así que la importación y la programación se hacen desde su panel.</li>
+      <li><b>Cruce con lo ya programado:</b> revisión de las 16 campañas programadas (Legends y Miami Classic) para respetar el tope de 2 emails de venta por semana y por persona.</li>
+      <li><b>Seguimiento semanal</b> por sede: aperturas, clics, bajas y registros, medidos con UTM.</li>
+    </ol>
+    <p class="small" style="margin-top:10px">Todo lo que crea o modifica datos en Constant Contact se ejecuta solo con aprobación previa.</p></div>
+  </div>
+  <div class="panel" style="margin-top:16px"><h3>Orden de arranque</h3><ol class="plain" style="margin-top:8px">
+    <li><b>1–3 oct:</b> aprobación del plan; número de WhatsApp; solicitud de acceso al DNS; primer export de inscritos.</li>
+    <li><b>4–7 oct:</b> etiquetas, listas y borradores en Constant Contact; CSV para Vozzi; revisión y aprobación de los borradores.</li>
+    <li><b>8 oct:</b> primer envío (JTE). <b>10 oct:</b> anuncio de Chicago. A partir de ahí, la secuencia de cada sede corre sola, con el export de inscritos actualizado antes de cada envío.</li>
+  </ol></div>
   <h3 id="plan-reglas">Reglas que aplican a todos los planes</h3>
   <div class="grid2">
     <div class="panel"><h3>Antes de enviar</h3><ul class="plain" style="margin-top:8px">
